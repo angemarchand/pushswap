@@ -81,8 +81,7 @@ function rrr(array &$la, array &$lb)
     rrb($la, $lb);
 }
 
-
-function pushWsap($la, $lb)
+function pushSwap(array &$la, array &$lb)
 {
     $itteration = [];
     while (!empty($la)) {
@@ -114,9 +113,16 @@ function pushWsap($la, $lb)
     }
     return $itteration;
 }
-$la = [2, 1, 3, 6, 5, 7 ];
+// $la = [8, 2, 3, 5, 3, 4, 1, 18, 23, 2, 35, 12, 9, 20, 30, 38, 14, 10, 11, 40, 34];
+// $lb = [];
+// pushSwap($la, $lb);
+// var_dump($la);
+
+$la = [8, 2, 3, 5, 3, 4, 1, 18, 23, 2, 35, 12, 9, 20, 30, 38, 14, 10, 11, 40, 34];
 $lb = [];
-pushWsap($la, $lb);
-$list = implode(" ", pushWsap($la, $lb));
+pushSwap($la, $lb);
+$list = implode(" ", pushSwap($la, $lb));
 echo $list ."\n";
+
+
 
