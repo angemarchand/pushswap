@@ -81,3 +81,42 @@ function rrr(array &$la, array &$lb)
     rrb($la, $lb);
 }
 
+
+function pushWsap($la, $lb)
+{
+    $itteration = [];
+    while (!empty($la)) {
+        pb($la, $lb);
+        array_push($itteration, 'pb');
+    }
+    while (!empty($lb)) {
+        $tmp = $lb[0];
+        $index = 0;
+        for ($i = 0; $i < count($lb); $i++) {
+            if ($lb[$i] > $tmp) {
+                $tmp = $lb[$i];
+                $index = $i;
+            }
+        }
+        if ($index < count($lb) / 2) {
+            while ($lb[0] != $tmp) {
+                rb($la, $lb);
+                array_push($itteration, 'rb');
+            }
+        } else {
+            while ($lb[0] != $tmp) {
+                rrb($la, $lb);
+                array_push($itteration, 'rrb');
+            }
+        }
+        pa($la, $lb);
+        array_push($itteration, 'pa');
+    }
+    return $itteration;
+}
+$la = [2, 1, 3, 6, 5, 7 ];
+$lb = [];
+pushWsap($la, $lb);
+$list = implode(" ", pushWsap($la, $lb));
+echo $list ."\n";
+
