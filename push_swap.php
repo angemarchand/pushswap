@@ -81,13 +81,25 @@ function rrr(array &$la, array &$lb)
     rrb($la, $lb);
 }
 
+function isArraySort(array &$la)
+{
+    for ($i = 0; $i <count($la)-1 ; $i++) {
+        if ($la[$i] > $la[$i+1]){
+            return false;
+        }
+    }return true;
+}
+
 function pushSwap(array &$la, array &$lb)
 {
     $itteration = [];
-    while (!empty($la)) {
-        pb($la, $lb);
-        array_push($itteration, 'pb');
-        // echo "bjr \n";
+
+    if(isArraySort($la) === false){
+        while (!empty($la)) {
+            pb($la, $lb);
+            array_push($itteration, 'pb');
+            // echo "bjr \n";
+        }
     }
     while (!empty($lb)) {
         $tmp = $lb[0];
@@ -124,8 +136,9 @@ $la = [];
 $lb = [];
 
 $arg = array_shift($argv);
-$la = $argv;
+$la = array_map('intval', $argv );
 $list = implode(" ", pushSwap(($la), $lb));
+// var_dump($la);
 echo $list ."\n";
 
 
