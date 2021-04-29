@@ -118,10 +118,13 @@ function pushSwap(array &$la, array &$lb)
 // pushSwap($la, $lb);
 // var_dump($la);
 
-$la = [2, 1, 3, 6, 5, 7];
+$la = [];
 $lb = [];
-pushSwap($la, $lb);
-$list = implode(" ", pushSwap($la, $lb));
+
+$arg = array_shift($argv);
+pushSwap($argv, $lb);
+$la = $argv;
+$list = implode(" ", pushSwap(($la), $lb));
 echo $list ."\n";
 
 
