@@ -87,6 +87,7 @@ function pushSwap(array &$la, array &$lb)
     while (!empty($la)) {
         pb($la, $lb);
         array_push($itteration, 'pb');
+        // echo "bjr \n";
     }
     while (!empty($lb)) {
         $tmp = $lb[0];
@@ -106,6 +107,7 @@ function pushSwap(array &$la, array &$lb)
             while ($lb[0] != $tmp) {
                 rrb($la, $lb);
                 array_push($itteration, 'rrb');
+
             }
         }
         pa($la, $lb);
@@ -122,7 +124,6 @@ $la = [];
 $lb = [];
 
 $arg = array_shift($argv);
-pushSwap($argv, $lb);
 $la = $argv;
 $list = implode(" ", pushSwap(($la), $lb));
 echo $list ."\n";
