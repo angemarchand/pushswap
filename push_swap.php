@@ -94,23 +94,28 @@ function pushSwap(array &$la, array &$lb)
 {
     $itteration = [];
 
-    if(isArraySort($la) === false){
+    $b=0;
+    $a=0;
+    while(isArraySort($la) === false){
         while (!empty($la)) {
             pb($la, $lb);
             array_push($itteration, 'pb');
-            // echo "bjr \n";
+            $b++;
+            $a--;
+
         }
     }
     while (!empty($lb)) {
         $tmp = $lb[0];
         $index = 0;
-        for ($i = 0; $i < count($lb); $i++) {
+        $countedLb= $b;
+        for ($i = 0; $i < $countedLb; $i++) {
             if ($lb[$i] > $tmp) {
                 $tmp = $lb[$i];
                 $index = $i;
             }
         }
-        if ($index < count($lb) / 2) {
+        if ($index < $countedLb / 2) {
             while ($lb[0] != $tmp) {
                 rb($la, $lb);
                 array_push($itteration, 'rb');
@@ -119,27 +124,36 @@ function pushSwap(array &$la, array &$lb)
             while ($lb[0] != $tmp) {
                 rrb($la, $lb);
                 array_push($itteration, 'rrb');
-
             }
         }
         pa($la, $lb);
         array_push($itteration, 'pa');
+        $b--;
     }
     return $itteration;
+
 }
 // $la = [8, 2, 3, 5, 3, 4, 1, 18, 23, 2, 35, 12, 9, 20, 30, 38, 14, 10, 11, 40, 34];
 // $lb = [];
 // pushSwap($la, $lb);
-// var_dump($la);
+
 
 $la = [];
 $lb = [];
 
+
+
+
+
 $arg = array_shift($argv);
 $la = array_map('intval', $argv );
-$list = implode(" ", pushSwap(($la), $lb));
-// var_dump($la);
+// for ($i = 0; $i < 5000; $i++) {
+    // array_push($la, rand(-10, 10000));
+// }
+$list = implode(" ", pushSwap($la, $lb));
 echo $list ."\n";
+
+
 
 
 
